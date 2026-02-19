@@ -78,7 +78,10 @@
 		name="description"
 		content="안녕하세요! ZYNTAX의 자기소개 사이트입니다! 개발자 포트폴리오와 프로젝트를 확인해보세요."
 	/>
-	<meta name="keywords" content="ZYNTAX, 개발자, 포트폴리오, 자기소개, 웹개발, 프로그래밍" />
+	<meta
+		name="keywords"
+		content="ZYNTAX, zyntax, 개발자, 포트폴리오, 자기소개, 웹개발, 프로그래밍"
+	/>
 	<meta name="author" content="ZYNTAX" />
 	<meta name="robots" content="index, follow" />
 	<meta name="theme-color" content="#4B5563" />
@@ -349,7 +352,7 @@
 					{/if}
 					<div class="mt-1">
 						<p class="dark:text-gray-200">
-							상태: <span class="font-bold text-red-700 dark:text-red-400">미완성</span>
+							상태: <span class="font-bold text-green-700 dark:text-green-400">완료</span>
 						</p>
 					</div>
 					<div class="flex space-x-4">
@@ -357,7 +360,12 @@
 							class="text-gray-900 transition-colors hover:cursor-pointer hover:text-gray-500 dark:text-gray-200 dark:hover:text-gray-400"
 							on:click={showLinkMessage}
 						>
-							관련 링크 없음
+							<a
+								href="https://github.com/"
+								target="_blank"
+								class="transform-all text-black duration-200 hover:text-red/50 dark:text-gray-200 dark:hover:text-gray-400"
+								>준비중</a
+							>
 						</button>
 					</div>
 				</div>
