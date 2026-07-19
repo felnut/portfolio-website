@@ -18,11 +18,12 @@ export default function MainContent() {
 				<Hero />
 				<About />
 				<Skills />
-				<Toast />
 				<Projects />
 				<Contact />
-				<Footer />
 			</main>
+
+			<Footer />
+			<Toast />
 		</ToastProvider>
 	);
 }

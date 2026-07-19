@@ -15,7 +15,9 @@ const sectionLabels = {
 function linkClass(activeSection, id) {
 	const active = activeSection === id;
 	return `transition-colors duration-200 hover:text-amber-600 dark:hover:text-amber-400 ${
-		active ? 'bg-linear-to-r from-amber-600 to-orange-600 bg-clip-text font-semibold text-transparent dark:from-amber-400 dark:to-orange-400' : ''
+		active
+			? 'bg-linear-to-r from-amber-600 to-orange-600 bg-clip-text font-semibold text-transparent dark:from-amber-400 dark:to-orange-400'
+			: ''
 	}`;
 }
 
@@ -67,7 +69,13 @@ export default function Nav() {
 					<div className="flex flex-col items-center justify-between p-4">
 						<div className="flex w-full items-center justify-between">
 							<a href="/#home" className="flex items-center gap-2">
-								<img src="/imgs/small_logo.png" alt="main logo" width={36} height={36} className="rounded-full" />
+								<Image
+									src="/imgs/small_logo.png"
+									alt="main logo"
+									width={36}
+									height={36}
+									className="rounded-full"
+								/>
 							</a>
 							<button
 								onClick={toggleMobileMenu}
@@ -96,7 +104,11 @@ export default function Nav() {
 							<ul className="mt-6 flex flex-col items-center gap-4 text-lg font-medium text-slate-800 dark:text-white">
 								{sections.map((id) => (
 									<li key={id}>
-										<a href={`/#${id}`} onClick={toggleMobileMenu} className={linkClass(activeSection, id)}>
+										<a
+											href={`/#${id}`}
+											onClick={toggleMobileMenu}
+											className={linkClass(activeSection, id)}
+										>
 											{sectionLabels[id]}
 										</a>
 									</li>
@@ -117,7 +129,13 @@ export default function Nav() {
 			>
 				<div className="flex items-center justify-between px-6 py-3">
 					<a href="/#home" className="shrink-0">
-						<img src="/imgs/small_logo.png" alt="main logo" width={40} height={40} className="rounded-full" />
+						<img
+							src="/imgs/small_logo.png"
+							alt="main logo"
+							width={40}
+							height={40}
+							className="rounded-full"
+						/>
 					</a>
 					<ul className="flex items-center gap-6 text-base font-medium text-slate-800 lg:gap-8 dark:text-white">
 						{sections.map((id) => (
