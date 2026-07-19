@@ -1,0 +1,10 @@
+# Robots.txt for FELNUT
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://zyntax.kro.kr/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

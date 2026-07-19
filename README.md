@@ -1,19 +1,18 @@
-# ZYNTAX Portfolio Site
+# FELNUT Portfolio Site
 
 ---
 
 ## 한국어
 
-ZYNTAX의 개인 포트폴리오 웹사이트입니다.
+FELNUT의 개인 포트폴리오 웹사이트입니다.
 
 ### 🛠️ 기술 스택
 
 이 프로젝트는 다음 기술로 작성되었습니다:
 
-![SvelteKit](https://img.shields.io/badge/SvelteKit-FF3E00?style=for-the-badge&logo=svelte&logoColor=white)
-![Svelte](https://img.shields.io/badge/Svelte-5.39.5-FF3E00?style=for-the-badge&logo=svelte&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-19.2.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.16-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 ### ⚠️ 주의사항
@@ -37,16 +36,15 @@ npm run dev
 
 ## English
 
-Personal portfolio website of ZYNTAX.
+Personal portfolio website of FELNUT.
 
 ### 🛠️ Tech Stack
 
 This project is built with the following technologies:
 
-![SvelteKit](https://img.shields.io/badge/SvelteKit-FF3E00?style=for-the-badge&logo=svelte&logoColor=white)
-![Svelte](https://img.shields.io/badge/Svelte-5.39.5-FF3E00?style=for-the-badge&logo=svelte&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-19.2.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.16-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 ### ⚠️ Notice
