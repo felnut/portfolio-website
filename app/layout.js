@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-	metadataBase: new URL('https://zyntax.kro.kr'),
+	metadataBase: new URL('https://felnut.kro.kr'),
 	icons: {
 		icon: '/imgs/small_logo.png'
 	},
