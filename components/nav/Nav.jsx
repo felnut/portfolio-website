@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import Image from 'next/image';
 
 const sections = ['home', 'about', 'skills', 'projects', 'contact'];
 const sectionLabels = {
@@ -71,7 +72,7 @@ export default function Nav() {
 							<a href="/#home" className="flex items-center gap-2">
 								<Image
 									src="/imgs/small_logo.png"
-									alt="main logo"
+									alt="FELNUT 메인 로고"
 									width={36}
 									height={36}
 									className="rounded-full"
@@ -129,9 +130,9 @@ export default function Nav() {
 			>
 				<div className="flex items-center justify-between px-6 py-3">
 					<a href="/#home" className="shrink-0">
-						<img
+						<Image
 							src="/imgs/small_logo.png"
-							alt="main logo"
+							alt="FELNUT 메인 로고"
 							width={40}
 							height={40}
 							className="rounded-full"
