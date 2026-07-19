@@ -24,6 +24,9 @@ export const viewport = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="ko" className={inter.variable}>
+			<head>
+				<meta name="naver-site-verification" content="b2b312a7dfe81100d7893247fa9b6d29fda95084" />
+			</head>
 			<body>
 				<Nav />
 				{children}
