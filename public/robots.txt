@@ -4,7 +4,7 @@ Allow: /
 Disallow: /api/
 
 # Sitemap location
-Sitemap: https://zyntax.kro.kr/sitemap.xml
+Sitemap: https://felnut.kro.kr/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
