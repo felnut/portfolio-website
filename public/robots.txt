@@ -1,7 +1,6 @@
 # Robots.txt for FELNUT
 User-agent: *
 Allow: /
-Disallow: /api/
 
 # Sitemap location
 Sitemap: https://felnut.kro.kr/sitemap.xml
