@@ -47,7 +47,7 @@ export default function Projects() {
 						</div>
 						<div className="mt-4 flex space-x-4">
 							<a
-								href="https://github.com/zyntax6760/Firewall-Project"
+								href="https://github.com/felnut/Firewall-Project"
 								target="_blank"
 								rel="noreferrer"
 								className="inline-flex items-center gap-1.5 font-medium text-slate-700 duration-200 hover:text-amber-600 dark:text-gray-200 dark:hover:text-amber-400"
@@ -90,7 +90,7 @@ export default function Projects() {
 						</div>
 						<div className="mt-4 flex space-x-4">
 							<a
-								href="https://github.com/zyntax6760/Weather-Mate"
+								href="https://github.com/felnut/Weather-Mate"
 								target="_blank"
 								rel="noreferrer"
 								className="inline-flex items-center gap-1.5 font-medium text-slate-700 duration-200 hover:text-amber-600 dark:text-gray-200 dark:hover:text-amber-400"

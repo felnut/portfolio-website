@@ -24,7 +24,7 @@ export default function Contact() {
 						Email
 					</a>
 					<a
-						href="https://github.com/zyntax6760"
+						href="https://github.com/felnut"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="group flex items-center gap-3 rounded-full border border-slate-200 bg-white/70 px-6 py-3 font-semibold text-slate-800 shadow-md shadow-slate-200/50 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:text-amber-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-200 dark:shadow-none dark:hover:border-amber-400/40 dark:hover:text-amber-400"

@@ -1,7 +1,7 @@
 import MainContent from './MainContent';
 
 export const metadata = {
-	title: 'FELNUT | 개발자 포트폴리오 - 프론트엔드・임베디드・DB',
+	title: 'FELNUT',
 	description: '안녕하세요! FELNUT의 자기소개 사이트입니다! 개발자 포트폴리오와 프로젝트를 확인해보세요.',
 	keywords: ['FELNUT', 'felnut', '개발자', '포트폴리오', '자기소개', '웹개발', '프로그래밍'],
 	authors: [{ name: 'FELNUT' }],
@@ -39,7 +39,7 @@ const jsonLd = {
 	url: 'https://felnut.kro.kr',
 	image: 'https://felnut.kro.kr/preview.png',
 	description: '프론트엔드, 임베디드 시스템, 데이터베이스를 공부하는 개발자입니다.',
-	sameAs: ['https://github.com/zyntax6760'],
+	sameAs: ['https://github.com/felnut'],
 	jobTitle: 'Developer',
 	knowsAbout: ['Frontend Development', 'Embedded Systems', 'Database']
 };
