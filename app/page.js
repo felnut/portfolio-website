@@ -1,7 +1,7 @@
 import MainContent from './MainContent';
 
 export const metadata = {
-	title: 'FELNUT',
+	title: 'FELNUT | 개발자 포트폴리오',
 	description: '안녕하세요! FELNUT의 자기소개 사이트입니다! 개발자 포트폴리오와 프로젝트를 확인해보세요.',
 	keywords: ['FELNUT', 'felnut', '개발자', '포트폴리오', '자기소개', '웹개발', '프로그래밍'],
 	authors: [{ name: 'FELNUT' }],

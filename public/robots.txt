@@ -5,6 +5,3 @@ Disallow: /api/
 
 # Sitemap location
 Sitemap: https://felnut.kro.kr/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 1
