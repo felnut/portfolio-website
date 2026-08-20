@@ -1,4 +1,5 @@
 import MainContent from './MainContent';
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
 	title: 'FELNUT | 프론트엔드 · 임베디드 개발자 포트폴리오',
@@ -56,6 +57,7 @@ const jsonLd = {
 export default function HomePage() {
 	return (
 		<>
+			<Analytics/>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 			<MainContent />
 		</>
