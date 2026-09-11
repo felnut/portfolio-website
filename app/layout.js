@@ -27,6 +27,11 @@ export default function RootLayout({ children }) {
 			<head>
 				<meta name="naver-site-verification" content="b2b312a7dfe81100d7893247fa9b6d29fda95084" />
 				<meta name="google-site-verification" content="MBoj6hKvAKFle602kZORdUkT7hrYkKWearSyGvV67s4" />
+				<script
+					async
+					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7832449160876742"
+					crossOrigin="anonymous"
+				></script>
 			</head>
 			<body>
 				<Nav />
