@@ -38,11 +38,13 @@ export const metadata = {
 	}
 };
 
-// 사람(Person) 하나만 선언하는 대신, 그 사람이 발행 주체(publisher)인
-// 사이트(WebSite)와 이 페이지 자체(WebPage)를 @id로 서로 연결해 선언한다.
-// 개인 포트폴리오라 실체 없는 Organization을 지어내는 대신, publisher가
-// Person을 그대로 가리키게 해 발행 주체를 정직하게 명시한다.
+// Person, 그 개인이 만든 1인 브랜드/조직(Organization), 사이트(WebSite),
+// 이 페이지 자체(WebPage)를 @id로 서로 연결해 선언한다. Organization은
+// 실체 없는 회사를 지어내는 게 아니라 founder로 Person을 그대로 연결해
+// "FELNUT"이 1인 개발자 브랜드임을 명시하는 용도다 — WebSite의 발행
+// 주체(publisher)는 이 Organization이 맡는다.
 const personId = `${SITE_URL}#person`;
+const organizationId = `${SITE_URL}#organization`;
 const websiteId = `${SITE_URL}#website`;
 const webpageId = `${SITE_URL}#webpage`;
 
@@ -68,13 +70,22 @@ const jsonLd = {
 			]
 		},
 		{
+			'@type': 'Organization',
+			'@id': organizationId,
+			name: 'FELNUT',
+			url: SITE_URL,
+			logo: `${SITE_URL}imgs/small_logo.png`,
+			founder: { '@id': personId },
+			sameAs: ['https://github.com/felnut']
+		},
+		{
 			'@type': 'WebSite',
 			'@id': websiteId,
 			url: SITE_URL,
 			name: 'FELNUT',
 			description: DESCRIPTION,
 			inLanguage: 'ko-KR',
-			publisher: { '@id': personId }
+			publisher: { '@id': organizationId }
 		},
 		{
 			'@type': 'WebPage',
