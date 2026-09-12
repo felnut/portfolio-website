@@ -7,4 +7,5 @@ bun.lockb
 
 # Miscellaneous
 /public/
-/.next/
+/dist/
+/.astro/

@@ -1,0 +1,194 @@
+---
+import Analytics from "@vercel/analytics/astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "FELNUT | 프론트엔드 · 임베디드 개발자 포트폴리오" } = Astro.props;
+
+const SITE_URL = "https://www.felnut.com/";
+const DESCRIPTION =
+  "FELNUT의 개발자 포트폴리오입니다. 프론트엔드, 임베디드 시스템, 데이터베이스를 공부하며 제작한 다양한 프로젝트와 기술을 소개합니다.";
+const PREVIEW_IMAGE = `${SITE_URL}preview.png`;
+
+const personId = `${SITE_URL}#person`;
+const organizationId = `${SITE_URL}#organization`;
+const websiteId = `${SITE_URL}#website`;
+const webpageId = `${SITE_URL}#webpage`;
+
+// git 히스토리 기준 실제 날짜(첫 커밋 / 최신 커밋). 사이트를 크게
+// 개편할 때 dateModified를 그때의 커밋 날짜로 함께 갱신한다.
+const PAGE_DATE_PUBLISHED = "2025-10-30";
+const PAGE_DATE_MODIFIED = "2026-09-12";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "FELNUT",
+      url: SITE_URL,
+      image: PREVIEW_IMAGE,
+      description:
+        "프론트엔드, 임베디드 시스템, 데이터베이스를 공부하며 다양한 프로젝트를 개발하는 개발자입니다.",
+      sameAs: ["https://github.com/felnut"],
+      jobTitle: "Developer",
+      knowsAbout: [
+        "Frontend Development",
+        "Embedded Systems",
+        "Database",
+        "Web Development",
+        "Programming",
+      ],
+    },
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: "FELNUT",
+      url: SITE_URL,
+      logo: `${SITE_URL}imgs/small_logo.png`,
+      founder: { "@id": personId },
+      sameAs: ["https://github.com/felnut"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: SITE_URL,
+      name: "FELNUT",
+      description: DESCRIPTION,
+      inLanguage: "ko-KR",
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@type": "WebPage",
+      "@id": webpageId,
+      url: SITE_URL,
+      name: title,
+      description: DESCRIPTION,
+      inLanguage: "ko-KR",
+      isPartOf: { "@id": websiteId },
+      about: { "@id": personId },
+      primaryImageOfPage: PREVIEW_IMAGE,
+      datePublished: PAGE_DATE_PUBLISHED,
+      dateModified: PAGE_DATE_MODIFIED,
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="description" content={DESCRIPTION} />
+    <meta
+      name="keywords"
+      content="FELNUT, 개발자 포트폴리오, 프론트엔드 개발자, 임베디드 시스템, 웹 개발, 프로그래밍, 데이터베이스"
+    />
+    <meta name="author" content="FELNUT" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#101010" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/imgs/small_logo.png" />
+    <link rel="canonical" href={SITE_URL} />
+
+    <meta name="naver-site-verification" content="b2b312a7dfe81100d7893247fa9b6d29fda95084" />
+    <meta name="google-site-verification" content="MBoj6hKvAKFle602kZORdUkT7hrYkKWearSyGvV67s4" />
+    <script
+      is:inline
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7832449160876742"
+      crossorigin="anonymous"></script>
+
+    <link
+      rel="preload"
+      href="/fonts/montserrat-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={DESCRIPTION} />
+    <meta property="og:image" content={PREVIEW_IMAGE} />
+    <meta property="og:url" content={SITE_URL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FELNUT" />
+    <meta property="og:locale" content="ko_KR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={DESCRIPTION} />
+    <meta name="twitter:image" content={PREVIEW_IMAGE} />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-[--background] px-9 sm:px-28 lg:px-20">
+    <Analytics />
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: "Montserrat Variable";
+    src: url("/fonts/montserrat-latin-wght-normal.woff2") format("woff2-variations");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --background: #101010;
+    --sec: #a476ff;
+    --white: #dfdfdf;
+    --white-icon: #f3f3f398;
+    --white-icon-tr: #f3f3f310;
+  }
+
+  * {
+    font-family:
+      "Montserrat Variable",
+      -apple-system,
+      system-ui,
+      sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  *::selection {
+    background-color: var(--sec);
+    color: var(--background);
+  }
+
+  /* Scrollbar styles */
+
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--container);
+    border-radius: 30px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--background);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--pink);
+  }
+
+  /* Scrollbar styles for Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) var(--container);
+  }
+</style>

@@ -1,0 +1,132 @@
+---
+import PreparingButton from "../React/PreparingButton.tsx";
+
+interface Project {
+  title: string;
+  emoji: string;
+  description: string;
+  details?: { title: string; items: string[] };
+  status: string;
+  githubUrl: string | null;
+}
+
+const projects: Project[] = [
+  {
+    title: "섯다",
+    emoji: "🃏",
+    description: "전통 카드 게임 섯다를 친구와 온라인 실시간으로 즐길 수 있는 웹 게임입니다.",
+    details: {
+      title: "주요 기능",
+      items: ["Socket.IO 기반 실시간 멀티플레이", "구글 로그인 및 랭킹", "AI 상대와 대전"],
+    },
+    status: "완료",
+    githubUrl: "https://github.com/felnut/Seotda",
+  },
+  {
+    title: "방화벽 프로젝트",
+    emoji: "🧱",
+    description: "파이썬을 활용하여 방화벽의 원리를 알아보았습니다.",
+    status: "완료",
+    githubUrl: "https://github.com/felnut/Firewall-Project",
+  },
+  {
+    title: "날씨 친구",
+    emoji: "🌥️",
+    description: "원하는 이미지를 날씨에 맞추어 넣으면, 날씨에 따라 이미지를 띄워줍니다.",
+    details: {
+      title: "사용 API",
+      items: ["OpenWeatherMap", "Kakao Map"],
+    },
+    status: "완료",
+    githubUrl: "https://github.com/felnut/Weather-Mate",
+  },
+  {
+    title: "액자형 공기청정기",
+    emoji: "🖼️",
+    description: "액자식 공기청정기를 라즈베리파이로 제작하였습니다.",
+    details: {
+      title: "특징",
+      items: ["액자식 형태로 공간 차지 최소화", "디자인에 잘 어울리고 분위기 저하 감소"],
+    },
+    status: "완료",
+    githubUrl: null,
+  },
+];
+
+const linkIconClass =
+  "size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]";
+---
+
+<section id="projects" class="py-12 border-t border-[#ffffff10] text-[var(--white)]">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My work</h2>
+    <h3 class="text-4xl md:text-5xl font-medium mb-8">Projects</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        projects.map((project) => (
+          <div class="group">
+            <div class="rounded-2xl overflow-hidden shadow-lg mb-4 h-48 md:h-72 flex items-center justify-center bg-gradient-to-br from-[#241a38] to-[#1a1428] border border-[var(--white-icon-tr)]">
+              <span
+                class="text-7xl md:text-8xl transition-transform duration-300 group-hover:scale-110"
+                aria-hidden="true"
+              >
+                {project.emoji}
+              </span>
+            </div>
+
+            <div class="px-3">
+              <div class="flex items-start">
+                <div class="flex-grow min-w-0">
+                  <h4 class="text-2xl font-semibold">{project.title}</h4>
+                  <span class="block py-1 text-sm text-[var(--white-icon)]">{project.status}</span>
+                </div>
+
+                <div class="flex gap-2 ml-auto shrink-0">
+                  {project.githubUrl ? (
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={project.githubUrl}
+                      aria-label={`${project.title} GitHub 저장소 열기`}
+                      class={linkIconClass}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-7">
+                        <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <PreparingButton client:load className={linkIconClass} />
+                  )}
+                </div>
+              </div>
+
+              <p class="mt-3 text-[var(--white-icon)] text-sm leading-relaxed">{project.description}</p>
+
+              {project.details && (
+                <div class="mt-2 text-[var(--white-icon)] text-sm">
+                  <span>{project.details.title}: </span>
+                  <span>{project.details.items.join(" · ")}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://github.com/felnut"
+      aria-label="GitHub"
+      class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)] hover:scale-105"
+    >
+      <span class="md:text-lg text-md">더 많은 프로젝트 보러가기</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+        <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
+        ></path>
+      </svg>
+    </a>
+  </div>
+</section>
