@@ -56,7 +56,7 @@ export default function Contact() {
 					>
 						<Image
 							src="/imgs/discord.svg"
-							alt=""
+							alt="Discord 아이콘"
 							aria-hidden="true"
 							width={20}
 							height={20}

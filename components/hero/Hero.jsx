@@ -65,7 +65,7 @@ export default function Hero() {
 					>
 						<Image
 							src="/imgs/mouse-cursor.svg"
-							alt=""
+							alt="아래로 스크롤하는 마우스 커서 아이콘"
 							aria-hidden="true"
 							width={56}
 							height={56}

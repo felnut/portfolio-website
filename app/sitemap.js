@@ -1,4 +1,4 @@
-const siteUrl = 'https://felnut.kro.kr';
+const siteUrl = 'https://www.felnut.com';
 
 export default function sitemap() {
 	const lastModified = new Date();
