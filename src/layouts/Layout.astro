@@ -1,5 +1,10 @@
 ---
 import Analytics from "@vercel/analytics/astro";
+import "@fontsource/ibm-plex-sans-kr/600.css";
+import "@fontsource/ibm-plex-sans-kr/700.css";
+import "@fontsource/pretendard/300.css";
+import "@fontsource/pretendard/400.css";
+import "@fontsource-variable/jetbrains-mono/wght.css";
 
 interface Props {
   title?: string;
@@ -103,14 +108,6 @@ const jsonLd = {
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7832449160876742"
       crossorigin="anonymous"></script>
 
-    <link
-      rel="preload"
-      href="/fonts/montserrat-latin-wght-normal.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
-
     <meta property="og:title" content={title} />
     <meta property="og:description" content={DESCRIPTION} />
     <meta property="og:image" content={PREVIEW_IMAGE} />
@@ -134,31 +131,43 @@ const jsonLd = {
 </html>
 
 <style is:global>
-  @font-face {
-    font-family: "Montserrat Variable";
-    src: url("/fonts/montserrat-latin-wght-normal.woff2") format("woff2-variations");
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-  }
-
   :root {
     --background: #101010;
     --sec: #a476ff;
     --white: #dfdfdf;
-    --white-icon: #f3f3f398;
+    --white-icon: #cbd5e1;
     --white-icon-tr: #f3f3f310;
+    --font-heading: "IBM Plex Sans KR", -apple-system, system-ui, sans-serif;
+    --font-body: "Pretendard", -apple-system, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
   }
 
   * {
-    font-family:
-      "Montserrat Variable",
-      -apple-system,
-      system-ui,
-      sans-serif;
+    font-family: var(--font-body);
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  nav {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  p,
+  li,
+  span {
+    letter-spacing: -0.005em;
+  }
+
+  nav span,
+  nav a {
+    letter-spacing: -0.01em;
   }
 
   *::selection {

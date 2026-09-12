@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const EMAIL_ADDRESS = "kinghojoon12@gmail.com";
+const EMAIL_ADDRESS = "dev@felnut.com";
 
 function computeEmailLink(): string {
   const width = window.innerWidth;
