@@ -48,6 +48,11 @@ const organizationId = `${SITE_URL}#organization`;
 const websiteId = `${SITE_URL}#website`;
 const webpageId = `${SITE_URL}#webpage`;
 
+// git 히스토리 기준 실제 날짜(첫 커밋 / 최신 커밋). 사이트를 크게
+// 개편할 때 dateModified를 그때의 커밋 날짜로 함께 갱신한다.
+const PAGE_DATE_PUBLISHED = '2025-10-30';
+const PAGE_DATE_MODIFIED = '2026-09-12';
+
 const jsonLd = {
 	'@context': 'https://schema.org',
 	'@graph': [
@@ -96,7 +101,9 @@ const jsonLd = {
 			inLanguage: 'ko-KR',
 			isPartOf: { '@id': websiteId },
 			about: { '@id': personId },
-			primaryImageOfPage: `${SITE_URL}preview.png`
+			primaryImageOfPage: `${SITE_URL}preview.png`,
+			datePublished: PAGE_DATE_PUBLISHED,
+			dateModified: PAGE_DATE_MODIFIED
 		}
 	]
 };
