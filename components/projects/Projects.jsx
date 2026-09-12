@@ -5,6 +5,17 @@ import { useToast } from '@/components/toast/ToastContext';
 
 const projects = [
 	{
+		title: '섯다',
+		emoji: '🃏',
+		description: ['전통 카드 게임 섯다를 친구와 온라인 실시간으로 즐길 수 있는 웹 게임입니다.'],
+		details: {
+			title: '주요 기능',
+			items: ['Socket.IO 기반 실시간 멀티플레이', '구글 로그인 및 랭킹', 'AI 상대와 대전']
+		},
+		status: '완료',
+		githubUrl: 'https://github.com/felnut/Seotda'
+	},
+	{
 		title: '방화벽 프로젝트',
 		emoji: '🧱',
 		description: ['파이썬을 활용하여 방화벽의 원리를 알아보았습니다.'],
