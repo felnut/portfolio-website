@@ -8,6 +8,11 @@ interface Project {
   details?: { title: string; items: string[] };
   status: string;
   githubUrl: string | null;
+  // githubUrl이 null일 때 보여줄 안내 문구 — 이유가 프로젝트마다 다르다
+  // (아직 안 올림 / 저장소가 비공개라 공개 링크가 없음 등).
+  githubNotice?: string;
+  // 실제로 배포되어 있는 프로젝트만 채운다.
+  liveUrl?: string;
 }
 
 const projects: Project[] = [
@@ -21,6 +26,7 @@ const projects: Project[] = [
     },
     status: "완료",
     githubUrl: "https://github.com/felnut/Seotda",
+    liveUrl: "https://seotda.felnut.com",
   },
   {
     title: "방화벽 프로젝트",
@@ -38,7 +44,10 @@ const projects: Project[] = [
       items: ["OpenWeatherMap", "Kakao Map"],
     },
     status: "완료",
-    githubUrl: "https://github.com/felnut/Weather-Mate",
+    // 저장소가 비공개라 공개 링크를 걸 수 없음(Yoast SEO 체크에서 404로
+    // 잡힌 원인).
+    githubUrl: null,
+    githubNotice: "비공개 저장소라 공개 링크가 없습니다.",
   },
   {
     title: "액자형 공기청정기",
@@ -101,7 +110,32 @@ const linkIconClass =
                       </svg>
                     </a>
                   ) : (
-                    <PreparingButton client:load className={linkIconClass} />
+                    <PreparingButton client:load className={linkIconClass} message={project.githubNotice} />
+                  )}
+
+                  {project.liveUrl && (
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={project.liveUrl}
+                      aria-label={`${project.title} 사이트 방문하기`}
+                      class={linkIconClass}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="size-7"
+                      >
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                      </svg>
+                    </a>
                   )}
                 </div>
               </div>

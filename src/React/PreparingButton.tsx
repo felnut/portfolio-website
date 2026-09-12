@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 
-// GitHub 링크가 아직 없는 프로젝트 카드에서 쓰는 버튼 — 누르면 짧게
-// 토스트 안내만 뜨고 사라진다(800ms 표시 + 500ms 페이드아웃).
-export default function PreparingButton({ className }: { className?: string }) {
+// 공개 GitHub 링크가 없는 프로젝트 카드에서 쓰는 버튼 — 누르면 짧게
+// 토스트 안내만 뜨고 사라진다(800ms 표시 + 500ms 페이드아웃). 이유는
+// 프로젝트마다 다를 수 있어(아직 안 올림/비공개 저장소 등) message로
+// 받는다.
+export default function PreparingButton({
+  className,
+  message = "아직 GitHub 링크가 준비되지 않았습니다!",
+}: {
+  className?: string;
+  message?: string;
+}) {
   const [display, setDisplay] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -61,7 +69,7 @@ export default function PreparingButton({ className }: { className?: string }) {
               visible ? "translate-y-0 scale-100 opacity-100" : "translate-y-4 scale-95 opacity-0"
             }`}
           >
-            <p>아직 GitHub 링크가 준비되지 않았습니다!</p>
+            <p>{message}</p>
           </div>
         </div>
       )}
