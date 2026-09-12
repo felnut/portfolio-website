@@ -70,7 +70,13 @@ export default function EmailLink({
   const emailLink = useEmailLink();
 
   return (
-    <a href={emailLink} target="_blank" rel="noopener noreferrer" aria-label={ariaLabel} className={className}>
+    <a
+      href={emailLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={ariaLabel}
+      className={className}
+    >
       {children}
     </a>
   );

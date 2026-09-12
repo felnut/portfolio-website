@@ -24,24 +24,22 @@ const navItems: NavItem[] = [
 ];
 ---
 
-<div class="flex justify-center w-full">
+<div class="flex w-full justify-center">
   <nav
     id="main-nav"
-    class="fixed left-1/2 -translate-x-1/2 z-[100] bg-[var(--background)] border border-1 border-transparent backdrop-blur-xl transition-all duration-500 ease-in-out md:top-6 md:bottom-auto bottom-0 w-[80%]"
+    class="border-1 fixed bottom-0 left-1/2 z-[100] w-[80%] -translate-x-1/2 border border-transparent bg-[var(--background)] backdrop-blur-xl transition-all duration-500 ease-in-out md:bottom-auto md:top-6"
   >
-    <div class="container mx-auto flex justify-center items-center p-3">
-      <ul
-        class="flex w-full justify-between md:space-x-6 md:justify-center md:gap-12 gap-6"
-      >
+    <div class="container mx-auto flex items-center justify-center p-3">
+      <ul class="flex w-full justify-between gap-6 md:justify-center md:gap-12 md:space-x-6">
         {
           navItems.map((item) => (
             <li class="flex-1 md:flex-none">
               <a
                 href={item.href}
-                class="flex flex-col items-center gap-1 text-[var(--white-icon)] transition-colors text-xs md:text-base relative group"
+                class="group relative flex flex-col items-center gap-1 text-xs text-[var(--white-icon)] transition-colors md:text-base"
               >
-                <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 scale-0 opacity-0 bg-[#A9FF5B] nav-indicator hidden md:block" />
-                <span class="md:hidden flex items-center justify-center w-6 h-6">
+                <div class="nav-indicator absolute -left-6 top-1/2 hidden h-2 w-2 -translate-y-1/2 scale-0 rounded-full bg-[#A9FF5B] opacity-0 transition-all duration-300 md:block" />
+                <span class="flex h-6 w-6 items-center justify-center md:hidden">
                   <fragment set:html={item.icon} />
                 </span>
                 <span class="hidden md:inline-block">{item.label}</span>
@@ -134,7 +132,7 @@ const navItems: NavItem[] = [
         rafId = requestAnimationFrame(updateNav);
       }
     },
-    { passive: true }
+    { passive: true },
   );
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -175,10 +173,7 @@ const navItems: NavItem[] = [
       });
     };
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
-    );
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
     sections.forEach((section) => observer.observe(section));
   });
 </script>
