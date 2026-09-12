@@ -154,7 +154,13 @@ const navItems: NavItem[] = [
   document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav a[href^='#']");
-    const observerOptions = { threshold: 0.6 };
+    // threshold 기반(예: 0.6)은 섹션 자신의 전체 높이 대비 보이는 비율을
+    // 재는데, "home" 섹션처럼 뷰포트보다 훨씬 큰 섹션은 그 비율이 절대
+    // threshold에 도달하지 못해 active가 갱신되지 않는다. 화면 정중앙
+    // 가로선과 겹치는 섹션을 active로 잡는 방식(rootMargin으로 위아래
+    // 50%씩 죽여 1px짜리 감지선만 남김)은 섹션 높이와 무관하게 항상
+    // 동작한다.
+    const observerOptions = { rootMargin: "-50% 0px -50% 0px", threshold: 0 };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
