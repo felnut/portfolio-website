@@ -32,7 +32,9 @@ const technologies = [
             loading={index < technologies.length ? "eager" : "lazy"}
             decoding="async"
           />
-          <span class="text-lg font-medium text-[var(--white-icon)] whitespace-nowrap">{tech.label}</span>
+          <span class="text-lg font-[family-name:var(--font-mono)] text-[#38bdf8] whitespace-nowrap">
+            {tech.label}
+          </span>
         </div>
       ))
     }
