@@ -5,6 +5,7 @@ import "@fontsource/ibm-plex-sans-kr/700.css";
 import "@fontsource/pretendard/300.css";
 import "@fontsource/pretendard/400.css";
 import "@fontsource-variable/jetbrains-mono/wght.css";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title?: string;
@@ -137,6 +138,7 @@ const jsonLd = {
   </head>
   <body class="bg-[--background] px-9 sm:px-28 lg:px-20">
     <Analytics />
+    <SpeedInsights />
     <slot />
   </body>
 </html>
