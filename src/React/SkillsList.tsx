@@ -8,6 +8,23 @@ const CategoryIcons = {
   자격증: <IdCard className="text-[var(--sec)]" />,
 };
 
+// 공식 브랜드 SVG(Simple Icons 기반, /public/svg). 자격증처럼 회사 로고가
+// 없는 항목은 매핑에서 빠지고 기존 불릿(•)으로 표시된다.
+const skillIcons: Record<string, { src: string; alt: string }[]> = {
+  "HTML/CSS": [
+    { src: "/svg/HTML5.svg", alt: "HTML5" },
+    { src: "/svg/CSS3.svg", alt: "CSS3" },
+  ],
+  JavaScript: [{ src: "/svg/javaScript.svg", alt: "JavaScript" }],
+  Python: [{ src: "/svg/python.svg", alt: "Python" }],
+  Java: [{ src: "/svg/java.svg", alt: "Java" }],
+  "C / C++": [
+    { src: "/svg/c.svg", alt: "C" },
+    { src: "/svg/cplusplus.svg", alt: "C++" },
+  ],
+  SQLite: [{ src: "/svg/sqlite.svg", alt: "SQLite" }],
+};
+
 const SkillsList = () => {
   const [openItem, setOpenItem] = useState<string | null>(null);
 
@@ -59,7 +76,21 @@ const SkillsList = () => {
                 <ul className="space-y-2 text-sm text-[var(--white-icon)]">
                   {items.map((item, index) => (
                     <div key={index} className="flex items-center">
-                      <span className="pl-1">•</span>
+                      {skillIcons[item] ? (
+                        <span className="flex items-center gap-1.5 pl-1">
+                          {skillIcons[item].map((icon) => (
+                            <img
+                              key={icon.alt}
+                              src={icon.src}
+                              alt={icon.alt}
+                              className="h-4 w-4 object-contain opacity-70 brightness-0 invert"
+                              loading="lazy"
+                            />
+                          ))}
+                        </span>
+                      ) : (
+                        <span className="pl-1">•</span>
+                      )}
                       <li className="pl-3">{item}</li>
                     </div>
                   ))}
