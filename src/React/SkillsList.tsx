@@ -75,7 +75,7 @@ const SkillsList = () => {
               >
                 <ul className="space-y-2 text-sm text-[var(--white-icon)]">
                   {items.map((item, index) => (
-                    <div key={index} className="flex items-center">
+                    <li key={index} className="flex items-center">
                       {skillIcons[item] ? (
                         <span className="flex items-center gap-1.5 pl-1">
                           {skillIcons[item].map((icon) => (
@@ -91,8 +91,8 @@ const SkillsList = () => {
                       ) : (
                         <span className="pl-1">•</span>
                       )}
-                      <li className="pl-3">{item}</li>
-                    </div>
+                      <span className="pl-3">{item}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
