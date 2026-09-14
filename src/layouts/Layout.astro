@@ -1,8 +1,13 @@
 ---
 import Analytics from "@vercel/analytics/astro";
-import "@fontsource/ibm-plex-sans-kr/600.css";
-import "@fontsource/ibm-plex-sans-kr/700.css";
-import "@fontsource/pretendard/300.css";
+// IBM Plex Sans KR은 한글 전체 유니코드 범위를 커버하느라 웨이트 하나당
+// @font-face 선언이 190개(woff+woff2)씩 나온다 — 이 둘을 그냥 import하면
+// Vite가 Tailwind CSS와 한 파일로 묶어버려서 최초 페인트를 막는 CSS가
+// 170KB를 넘어간다(PageSpeed의 render-blocking 지적 원인). 제목에만 쓰는
+// 폰트라 크리티컬하지 않으므로, ?url로 파일 경로만 가져와 아래에서
+// media="print" 트릭으로 비동기 로드한다.
+import ibmPlex600Url from "@fontsource/ibm-plex-sans-kr/600.css?url";
+import ibmPlex700Url from "@fontsource/ibm-plex-sans-kr/700.css?url";
 import "@fontsource/pretendard/400.css";
 import "@fontsource-variable/jetbrains-mono/wght.css";
 import SpeedInsights from "@vercel/speed-insights/astro";
@@ -114,6 +119,17 @@ const jsonLd = {
     <link rel="icon" type="image/png" href="/imgs/small_logo.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={SITE_URL} />
+
+    <!-- 제목에만 쓰는 IBM Plex Sans KR은 렌더 차단 없이 비동기로 불러오고,
+         로드되기 전까지는 폴백 폰트로 보여준다(media="print" 트릭). -->
+    <link rel="preload" as="style" href={ibmPlex600Url} />
+    <link rel="preload" as="style" href={ibmPlex700Url} />
+    <link rel="stylesheet" href={ibmPlex600Url} media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href={ibmPlex700Url} media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href={ibmPlex600Url} />
+      <link rel="stylesheet" href={ibmPlex700Url} />
+    </noscript>
 
     <meta name="naver-site-verification" content="b2b312a7dfe81100d7893247fa9b6d29fda95084" />
     <meta name="google-site-verification" content="MBoj6hKvAKFle602kZORdUkT7hrYkKWearSyGvV67s4" />
