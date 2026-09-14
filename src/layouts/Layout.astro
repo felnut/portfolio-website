@@ -11,11 +11,13 @@ interface Props {
   title?: string;
 }
 
-const { title = "FELNUT | 프론트엔드 · 임베디드 개발자 포트폴리오" } = Astro.props;
+const {
+  title = "FELNUT | 프론트엔드·임베디드 시스템·데이터베이스를 공부하는 고등학생 개발자 포트폴리오",
+} = Astro.props;
 
 const SITE_URL = "https://www.felnut.com/";
 const DESCRIPTION =
-  "프론트엔드·임베디드·DB를 공부하며 섯다, 방화벽 등 프로젝트를 직접 개발하는 FELNUT의 포트폴리오입니다.";
+  "프론트엔드, 임베디드 시스템, 데이터베이스를 공부하며 섯다·방화벽·액자형 공기청정기 등 다양한 프로젝트를 직접 만들어보는 FELNUT의 개발자 포트폴리오입니다. 실시간 웹 게임부터 라즈베리파이 하드웨어까지 폭넓게 다룹니다.";
 const PREVIEW_IMAGE = `${SITE_URL}preview.png`;
 
 const personId = `${SITE_URL}#person`;
