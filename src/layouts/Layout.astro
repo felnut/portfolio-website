@@ -8,7 +8,11 @@ import Analytics from "@vercel/analytics/astro";
 // media="print" 트릭으로 비동기 로드한다.
 import ibmPlex600Url from "@fontsource/ibm-plex-sans-kr/600.css?url";
 import ibmPlex700Url from "@fontsource/ibm-plex-sans-kr/700.css?url";
-import "@fontsource/pretendard/400.css";
+// 본문 전체에 쓰는 Pretendard도 사정이 있다 — IBM Plex와 달리 유니코드
+// 범위별로 쪼개져 있지 않고 "latin"이라는 이름과 무관하게 한글까지 전부
+// 포함한 파일 하나가 748KB(woff2)나 된다. 같은 이유로 렌더 차단에서
+// 빼서 비동기로 불러온다.
+import pretendard400Url from "@fontsource/pretendard/400.css?url";
 import "@fontsource-variable/jetbrains-mono/wght.css";
 import SpeedInsights from "@vercel/speed-insights/astro";
 
@@ -116,19 +120,28 @@ const jsonLd = {
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#101010" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/imgs/small_logo.png" />
+    <!-- 원본 로고(512x512, 128KB)는 브라우저 탭 아이콘용으로는 과한
+         용량이라, 매 페이지 로드마다 받는 파비콘은 48x48로 축소한 것을
+         쓴다. 원본은 JSON-LD의 Organization.logo 등 큰 해상도가 필요한
+         곳에만 그대로 남겨둔다. -->
+    <link rel="icon" type="image/png" href="/imgs/favicon-48.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={SITE_URL} />
 
     <!-- 제목에만 쓰는 IBM Plex Sans KR은 렌더 차단 없이 비동기로 불러오고,
          로드되기 전까지는 폴백 폰트로 보여준다(media="print" 트릭). -->
+    <!-- 본문 폰트 Pretendard도 748KB짜리 단일 파일이라 같은 방식으로
+         비동기 로드한다 — 폴백 폰트로 먼저 보여주고 로드되면 교체. -->
     <link rel="preload" as="style" href={ibmPlex600Url} />
     <link rel="preload" as="style" href={ibmPlex700Url} />
+    <link rel="preload" as="style" href={pretendard400Url} />
     <link rel="stylesheet" href={ibmPlex600Url} media="print" onload="this.media='all'" />
     <link rel="stylesheet" href={ibmPlex700Url} media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href={pretendard400Url} media="print" onload="this.media='all'" />
     <noscript>
       <link rel="stylesheet" href={ibmPlex600Url} />
       <link rel="stylesheet" href={ibmPlex700Url} />
+      <link rel="stylesheet" href={pretendard400Url} />
     </noscript>
 
     <meta name="naver-site-verification" content="b2b312a7dfe81100d7893247fa9b6d29fda95084" />
