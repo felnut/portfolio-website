@@ -35,23 +35,21 @@ const navItems: NavItem[] = [
   >
     <div class="container mx-auto flex items-center justify-center p-3">
       <ul class="flex w-full justify-between gap-6 md:justify-center md:gap-12 md:space-x-6">
-        {
-          navItems.map((item) => (
-            <li class="flex-1 md:flex-none">
-              <a
-                href={item.href}
-                class="group relative flex flex-col items-center gap-1 text-xs text-[var(--white-icon)] transition-colors md:text-base"
-              >
-                <div class="nav-indicator absolute -left-6 top-1/2 hidden h-2 w-2 -translate-y-1/2 scale-0 rounded-full bg-[#A9FF5B] opacity-0 transition-all duration-300 md:block" />
-                <span class="flex h-6 w-6 items-center justify-center md:hidden">
-                  <fragment set:html={item.icon} />
-                </span>
-                <span class="hidden md:inline-block">{item.label}</span>
-                <span class="md:hidden">{item.label}</span>
-              </a>
-            </li>
-          ))
-        }
+        {navItems.map((item) => (
+          <li class="flex-1 md:flex-none">
+            <a
+              href={item.href}
+              class="group relative flex flex-col items-center gap-1 text-xs text-[var(--white-icon)] transition-colors md:text-base"
+            >
+              <div class="nav-indicator absolute -left-6 top-1/2 hidden h-2 w-2 -translate-y-1/2 scale-0 rounded-full bg-[#A9FF5B] opacity-0 transition-all duration-300 md:block" />
+              <span class="flex h-6 w-6 items-center justify-center md:hidden">
+                <fragment set:html={item.icon} />
+              </span>
+              <span class="hidden md:inline-block">{item.label}</span>
+              <span class="md:hidden">{item.label}</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </nav>
