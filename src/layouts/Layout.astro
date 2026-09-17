@@ -1,4 +1,5 @@
 ---
+import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 // IBM Plex Sans KR은 한글 전체 유니코드 범위를 커버하느라 웨이트 하나당
 // @font-face 선언이 190개(woff+woff2)씩 나온다 — 이 둘을 그냥 import하면
@@ -161,9 +162,9 @@ const jsonLd = {
     <meta name="twitter:image" content={PREVIEW_IMAGE} />
 
     <!-- Structured Data (JSON-LD) -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
   </head>
-  <body class="bg-[--background] px-9 sm:px-28 lg:px-20">
+  <body class="bg-[var(--background)] px-9 sm:px-28 lg:px-20">
     <Analytics />
     <SpeedInsights />
     <slot />
@@ -171,73 +172,79 @@ const jsonLd = {
 </html>
 
 <style is:global>
-  :root {
-    --background: #101010;
-    --sec: #a476ff;
-    --white: #dfdfdf;
-    --white-icon: #cbd5e1;
-    --white-icon-tr: #f3f3f310;
-    --font-heading: "IBM Plex Sans KR", -apple-system, system-ui, sans-serif;
-    --font-body: "Pretendard", -apple-system, system-ui, sans-serif;
-    --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
-  }
+  /* Tailwind v4 utilities live in @layer utilities, which always loses to
+     unlayered CSS regardless of source order — so this reset has to sit in
+     @layer base too, or it would permanently win over every utility class
+     (e.g. body's px-9). */
+  @layer base {
+    :root {
+      --background: #101010;
+      --sec: #a476ff;
+      --white: #dfdfdf;
+      --white-icon: #cbd5e1;
+      --white-icon-tr: #f3f3f310;
+      --font-heading: "IBM Plex Sans KR", -apple-system, system-ui, sans-serif;
+      --font-body: "Pretendard", -apple-system, system-ui, sans-serif;
+      --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
+    }
 
-  * {
-    font-family: var(--font-body);
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
+    * {
+      font-family: var(--font-body);
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  nav {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    nav {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
 
-  p,
-  li,
-  span {
-    letter-spacing: -0.005em;
-  }
+    p,
+    li,
+    span {
+      letter-spacing: -0.005em;
+    }
 
-  nav span,
-  nav a {
-    letter-spacing: -0.01em;
-  }
+    nav span,
+    nav a {
+      letter-spacing: -0.01em;
+    }
 
-  *::selection {
-    background-color: var(--sec);
-    color: var(--background);
-  }
+    *::selection {
+      background-color: var(--sec);
+      color: var(--background);
+    }
 
-  /* Scrollbar styles */
+    /* Scrollbar styles */
 
-  ::-webkit-scrollbar {
-    width: 15px;
-  }
+    ::-webkit-scrollbar {
+      width: 15px;
+    }
 
-  ::-webkit-scrollbar-track {
-    background: var(--container);
-    border-radius: 30px;
-  }
+    ::-webkit-scrollbar-track {
+      background: var(--container);
+      border-radius: 30px;
+    }
 
-  ::-webkit-scrollbar-thumb {
-    background: var(--background);
-    border-radius: 10px;
-  }
+    ::-webkit-scrollbar-thumb {
+      background: var(--background);
+      border-radius: 10px;
+    }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--pink);
-  }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--pink);
+    }
 
-  /* Scrollbar styles for Firefox */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--line) var(--container);
+    /* Scrollbar styles for Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) var(--container);
+    }
   }
 </style>

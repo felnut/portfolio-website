@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 
 import react from "@astrojs/react";
@@ -8,8 +8,9 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.felnut.com",
-  integrations: [tailwind(), react(), sitemap()],
+  integrations: [react(), sitemap()],
   vite: {
+    plugins: [tailwindcss()],
     resolve: {
       alias: {
         "@": "/src",

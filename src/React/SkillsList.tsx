@@ -47,12 +47,12 @@ const SkillsList = () => {
           <li key={category} className="w-full">
             <div
               onClick={() => toggleItem(category)}
-              className="w-full cursor-pointer overflow-hidden rounded-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] text-left transition-all hover:bg-opacity-80 md:w-[400px]"
+              className="hover:bg-opacity-80 w-full cursor-pointer overflow-hidden rounded-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] text-left transition-all md:w-[400px]"
             >
               <div className="flex items-center gap-3 p-4">
                 {CategoryIcons[category as keyof typeof CategoryIcons]}
                 <div className="flex flex-grow items-center justify-between gap-2">
-                  <div className="min-w-0 max-w-[200px] overflow-hidden md:max-w-none">
+                  <div className="max-w-[200px] min-w-0 overflow-hidden md:max-w-none">
                     <span className="block truncate text-lg text-[var(--white)]">{category}</span>
                   </div>
                   <svg
