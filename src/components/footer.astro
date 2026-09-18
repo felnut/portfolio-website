@@ -57,14 +57,14 @@ const iconClass =
             { desc: "Deployed on", name: "Vercel", icon: "/svg/vercel.svg", alt: "Vercel Logo" },
           ].map((tech) => (
             <div class="flex items-center justify-center space-x-3 lg:justify-end">
-              <span class="text-sm text-[var(--white-icon)]">{tech.desc}</span>
+              <span class="text-sm text-(--white-icon)">{tech.desc}</span>
               <img
                 src={tech.icon}
                 alt={tech.alt}
                 class="h-5 w-5 object-contain opacity-50 brightness-0 invert filter"
                 loading="lazy"
               />
-              <span class="text-sm text-[var(--white-icon)]">{tech.name}</span>
+              <span class="text-sm text-(--white-icon)">{tech.name}</span>
             </div>
           ))}
         </div>
@@ -72,14 +72,14 @@ const iconClass =
     </div>
 
     <div class="mt-12 border-t border-[#ffffff10] pt-8">
-      <p class="text-center text-sm text-[var(--white-icon)]">
+      <p class="text-center text-sm text-(--white-icon)">
         © {currentYear} FELNUT. All rights reserved. <br class="sm:hidden" />
         <br />
         Design based on{" "}
         <a
           target="_blank"
           rel="noopener noreferrer"
-          class="text-[var(--white-icon)] underline underline-offset-2 transition duration-300 ease-in-out hover:text-[var(--white)]"
+          class="text-(--white-icon) underline underline-offset-2 transition duration-300 ease-in-out hover:text-(--white)"
           href="https://themewagon.com/themes/dark-minimal/"
         >
           DarkMinimal
@@ -88,7 +88,7 @@ const iconClass =
         <a
           target="_blank"
           rel="noopener noreferrer"
-          class="text-[var(--white-icon)] underline underline-offset-2 transition duration-300 ease-in-out hover:text-[var(--white)]"
+          class="text-(--white-icon)rline underline-offset-2 transition duration-300 ease-in-out hover:text-(--white)"
           href="https://github.com/Gothsec"
         >
           Andres Hernandez
@@ -102,7 +102,7 @@ const iconClass =
   id="scroll-to-top"
   type="button"
   aria-label="맨 위로 가기"
-  class="fixed bottom-24 right-4 z-50 flex size-11 items-center justify-center rounded-full border border-[#ffffff10] bg-[var(--background)] text-[var(--white-icon)] opacity-0 shadow-lg pointer-events-none translate-y-2 transition-all duration-300 ease-in-out hover:text-[var(--white)] md:bottom-8 md:right-8"
+  class="fixed bottom-24 right-4 z-50 flex size-11 items-center justify-center rounded-full border border-[#ffffff10] bg-(--background) text-(--white-icon) opacity-0 shadow-lg pointer-events-none translate-y-2 transition-all duration-300 ease-in-out hover:text-(--white) md:bottom-8 md:right-8"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"

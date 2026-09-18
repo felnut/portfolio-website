@@ -277,10 +277,10 @@ const LetterGlitch = ({
     <div className="relative h-full w-full overflow-hidden bg-[#101010]">
       <canvas ref={canvasRef} className="block h-full w-full" />
       {outerVignette && (
-        <div className="pointer-events-none absolute top-0 left-0 h-full w-full bg-[radial-gradient(circle,_rgba(16,16,16,0)_60%,_rgba(16,16,16,1)_100%)]"></div>
+        <div className="pointer-events-none absolute top-0 left-0 h-full w-full bg-[radial-gradient(circle,rgba(16,16,16,0)_60%,rgba(16,16,16,1)_100%)]"></div>
       )}
       {centerVignette && (
-        <div className="pointer-events-none absolute top-0 left-0 h-full w-full bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_60%)]"></div>
+        <div className="pointer-events-none absolute top-0 left-0 h-full w-full bg-[radial-gradient(circle,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0)_60%)]"></div>
       )}
     </div>
   );
