@@ -172,6 +172,28 @@ const jsonLd = {
 </html>
 
 <style is:global>
+  /* Pretendard/IBM Plex Sans KR는 media="print" 트릭으로 비동기 로드되다 보니,
+     로드 전엔 폴백 폰트(Arial 등)로 그려지고 로드 후 실제 폰트로 교체(swap)된다.
+     두 폰트의 줄 높이(ascent/descent)가 폴백과 달라 교체 시 아래 콘텐츠가
+     밀리는 레이아웃 시프트(CLS)가 생기므로, 폴백에 실제 폰트와 같은 세로
+     메트릭을 강제로 씌워 교체 전후 줄 상자 높이를 맞춘다. 수치는 각 폰트
+     파일의 hhea ascent/descent를 unitsPerEm으로 나눠 계산(fonttools로 직접 측정). */
+  @font-face {
+    font-family: "Pretendard Fallback";
+    src: local("Arial");
+    ascent-override: 95.21%;
+    descent-override: 24.12%;
+    line-gap-override: 0%;
+  }
+
+  @font-face {
+    font-family: "IBM Plex Sans KR Fallback";
+    src: local("Arial");
+    ascent-override: 108.5%;
+    descent-override: 41.5%;
+    line-gap-override: 0%;
+  }
+
   /* Tailwind v4 utilities live in @layer utilities, which always loses to
      unlayered CSS regardless of source order — so this reset has to sit in
      @layer base too, or it would permanently win over every utility class
@@ -183,8 +205,8 @@ const jsonLd = {
       --white: #dfdfdf;
       --white-icon: #cbd5e1;
       --white-icon-tr: #f3f3f310;
-      --font-heading: "IBM Plex Sans KR", -apple-system, system-ui, sans-serif;
-      --font-body: "Pretendard", -apple-system, system-ui, sans-serif;
+      --font-heading: "IBM Plex Sans KR", "IBM Plex Sans KR Fallback", -apple-system, system-ui, sans-serif;
+      --font-body: "Pretendard", "Pretendard Fallback", -apple-system, system-ui, sans-serif;
       --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
     }
 
