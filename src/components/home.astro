@@ -128,10 +128,10 @@ const career = calculateCareer();
     </div>
 
     <div class="flex flex-col items-center gap-8 lg:flex-row">
-      <SkillsList client:load />
+      <SkillsList client:visible />
       <div class="flex size-[290px] justify-center pt-3 md:ml-16 md:h-[292px] md:w-full md:pt-9">
         <LetterGlitch
-          client:load
+          client:visible
           glitchColors={["#5e4491", "#A476FF", "#241a38"]}
           glitchSpeed={33}
           centerVignette={false}
@@ -150,7 +150,11 @@ const career = calculateCareer();
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shine 3s linear infinite;
+    /* background-position은 합성(composite) 불가능한 속성이라 이 애니메이션은
+       매 프레임 리페인트를 강제한다 - infinite로 두면 페이지가 떠 있는 내내
+       계속 리페인트되므로(Lighthouse의 "non-composited animations" 지적 원인)
+       진입 시 살짝 반짝이고 멈추게 3회로 제한한다. */
+    animation: shine 3s linear 3;
   }
 
   @keyframes shine {
