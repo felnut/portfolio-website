@@ -24,6 +24,7 @@ const LetterGlitch = ({
     }[]
   >([]);
   const grid = useRef({ columns: 0, rows: 0 });
+  const canvasSize = useRef({ width: 0, height: 0 });
   const context = useRef<CanvasRenderingContext2D | null>(null);
   const lastGlitchTime = useRef(Date.now());
 
@@ -154,6 +155,7 @@ const LetterGlitch = ({
 
     const dpr = window.devicePixelRatio || 1;
     const rect = parent.getBoundingClientRect();
+    canvasSize.current = { width: rect.width, height: rect.height };
 
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
@@ -173,7 +175,7 @@ const LetterGlitch = ({
   const drawLetters = () => {
     if (!context.current || letters.current.length === 0) return;
     const ctx = context.current;
-    const { width, height } = canvasRef.current!.getBoundingClientRect();
+    const { width, height } = canvasSize.current;
     ctx.clearRect(0, 0, width, height);
     ctx.font = `${fontSize}px monospace`;
     ctx.textBaseline = "top";

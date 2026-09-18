@@ -18,7 +18,7 @@ const linkCardClass =
     </p>
 
     <nav aria-label="연락 및 소셜 미디어 링크" class="flex flex-wrap items-center gap-4">
-      <EmailLink client:load ariaLabel="FELNUT에게 Email 보내기" className={linkCardClass}>
+      <EmailLink client:visible ariaLabel="FELNUT에게 Email 보내기" className={linkCardClass}>
         <EmailIcon width="1.4em" height="1.4em" />
         Email
       </EmailLink>
