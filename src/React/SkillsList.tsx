@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Code2, Cpu, Database, IdCard } from "lucide-react";
 
 const CategoryIcons = {
-  Frontend: <Code2 className="text-[var(--sec)]" />,
-  Programming: <Cpu className="text-[var(--sec)]" />,
-  Database: <Database className="text-[var(--sec)]" />,
-  자격증: <IdCard className="text-[var(--sec)]" />,
+  Frontend: <Code2 className="text-(--sec)" />,
+  Programming: <Cpu className="text-(--sec)" />,
+  Database: <Database className="text-(--sec)" />,
+  자격증: <IdCard className="text-(--sec)" />,
 };
 
 // 공식 브랜드 SVG(Simple Icons 기반, /public/svg). 자격증처럼 회사 로고가
@@ -41,25 +41,25 @@ const SkillsList = () => {
 
   return (
     <div className="pt-3 text-left md:pt-9">
-      <h3 className="text-3xl font-semibold text-[var(--white)] md:mb-6 md:text-4xl">What I do?</h3>
+      <h3 className="text-3xl font-semibold text-(--white) md:mb-6 md:text-4xl">What I do?</h3>
       <ul className="mt-4 space-y-4 text-lg">
         {Object.entries(skills).map(([category, items]) => (
           <li key={category} className="w-full">
             <div
               onClick={() => toggleItem(category)}
-              className="hover:bg-opacity-80 w-full cursor-pointer overflow-hidden rounded-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] text-left transition-all md:w-[400px]"
+              className="hover:bg-opacity-80 w-full cursor-pointer overflow-hidden rounded-2xl border border-(--white-icon-tr) bg-[#1414149c] text-left transition-all md:w-100"
             >
               <div className="flex items-center gap-3 p-4">
                 {CategoryIcons[category as keyof typeof CategoryIcons]}
-                <div className="flex flex-grow items-center justify-between gap-2">
-                  <div className="max-w-[200px] min-w-0 overflow-hidden md:max-w-none">
-                    <span className="block truncate text-lg text-[var(--white)]">{category}</span>
+                <div className="flex grow items-center justify-between gap-2">
+                  <div className="max-w-50 min-w-0 overflow-hidden md:max-w-none">
+                    <span className="block truncate text-lg text-(--white)">{category}</span>
                   </div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className={`h-6 w-6 flex-shrink-0 transform text-[var(--white)] transition-transform ${
+                    className={`h-6 w-6 shrink-0 transform text-(--white) transition-transform ${
                       openItem === category ? "rotate-180" : ""
                     }`}
                   >
@@ -70,10 +70,10 @@ const SkillsList = () => {
 
               <div
                 className={`px-4 transition-all duration-300 ${
-                  openItem === category ? "max-h-[500px] pb-4 opacity-100" : "max-h-0 opacity-0"
+                  openItem === category ? "max-h-125 pb-4 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <ul className="space-y-2 text-sm text-[var(--white-icon)]">
+                <ul className="space-y-2 text-sm text-(--white-icon)">
                   {items.map((item, index) => (
                     <li key={index} className="flex items-center">
                       {skillIcons[item] ? (

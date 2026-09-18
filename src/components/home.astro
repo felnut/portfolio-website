@@ -36,20 +36,18 @@ const age = calculateAge();
 const career = calculateCareer();
 ---
 
-<section class="mt-12 text-[var(--white)] md:mt-0" id="home">
+<section class="mt-12 text-(--white) md:mt-0" id="home">
   <div class="mx-auto max-w-5xl space-y-8 pb-14 md:py-36">
     <div class="space-y-4 text-left">
-      <p class="text-md shiny-white text-[var(--white-icon)] md:text-lg">
-        안녕하세요, FELNUT입니다
-      </p>
+      <p class="text-md shiny-white text-(--white-icon) md:text-lg">안녕하세요, FELNUT입니다</p>
       <h1 class="flex flex-col space-y-4 md:gap-4 lg:flex-row lg:items-center lg:space-x-8 lg:space-y-0">
-        <span class="shrink-0 text-pretty font-[family-name:var(--font-heading)] text-5xl font-bold leading-none text-[var(--white)] md:text-6xl">
+        <span class="shrink-0 text-pretty font-(family-name:--font-heading) text-5xl font-bold leading-none text-(--white) md:text-6xl">
           개발자
         </span>
-        <span class="text-md text-[var(--white-icon)] md:text-2xl">
+        <span class="text-md text-(--white-icon) md:text-2xl">
           프론트엔드, 임베디드 시스템, 데이터베이스를 공부하며 다양한 프로젝트를 만들어가고
-          있습니다. 그중에서도 <span class="shiny-sec text-[var(--sec)]">프론트엔드</span> 개발에
-          가장 큰 흥미를 느낍니다.
+          있습니다. 그중에서도 <span class="shiny-sec text-(--sec)">프론트엔드</span> 개발에 가장 큰
+          흥미를 느낍니다.
         </span>
       </h1>
       <div class="flex justify-start gap-2 pt-3 md:pt-6">
@@ -79,21 +77,21 @@ const career = calculateCareer();
 
     <LogoWall />
 
-    <div class="rounded-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-6 md:p-8">
-      <h2 class="shiny-sec mb-2 text-lg text-[var(--sec)]">About Me</h2>
+    <div class="rounded-2xl border border-(--white-icon-tr) bg-[#1414149c] p-6 md:p-8">
+      <h2 class="shiny-sec mb-2 text-lg text-(--sec)">About Me</h2>
       <h3 class="mb-4 text-2xl md:text-3xl">저를 소개합니다</h3>
 
-      <p class="leading-relaxed text-[var(--white-icon)]">
-        안녕하세요! 개발자 <span class="font-semibold text-[var(--white)]">FELNUT</span>입니다.{" "}
-        <span class="font-semibold text-[var(--white)]">프론트엔드</span>,{" "}
-        <span class="font-semibold text-[var(--white)]">임베디드 시스템</span>,{" "}
-        <span class="font-semibold text-[var(--white)]">데이터베이스</span>를 공부하고 있습니다.
+      <p class="leading-relaxed text-(--white-icon)">
+        안녕하세요! 개발자 <span class="font-semibold text-(--white)">FELNUT</span>입니다.{" "}
+        <span class="font-semibold text-(--white)">프론트엔드</span>,{" "}
+        <span class="font-semibold text-(--white)">임베디드 시스템</span>,{" "}
+        <span class="font-semibold text-(--white)">데이터베이스</span>를 공부하고 있습니다.
       </p>
 
-      <p class="mt-3 leading-relaxed text-[var(--white-icon)]">
+      <p class="mt-3 leading-relaxed text-(--white-icon)">
         직접 동작하는 서비스를 만들어보면서 배우는 걸 좋아해서, 실시간 웹 게임인{" "}
-        <span class="font-semibold text-[var(--white)]">섯다</span>부터 라즈베리파이로 만든{" "}
-        <span class="font-semibold text-[var(--white)]">액자형 공기청정기</span>까지 프론트엔드와
+        <span class="font-semibold text-(--white)">섯다</span>부터 라즈베리파이로 만든{" "}
+        <span class="font-semibold text-(--white)"> 액자형 공기청정기</span>까지 프론트엔드와
         임베디드를 넘나드는 프로젝트를 진행해왔습니다. 앞으로도 새로운 기술을 프로젝트에 직접
         적용해보며 배운 것을 하나씩 늘려가고 싶습니다.
       </p>
@@ -101,35 +99,35 @@ const career = calculateCareer();
       <div aria-label="FELNUT에 대한 정보" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div
           aria-label={`${age}세`}
-          class="rounded-xl border border-[var(--white-icon-tr)] bg-[#1a1a1a9c] p-4 text-center"
+          class="rounded-xl border border-(--white-icon-tr) bg-[#1a1a1a9c] p-4 text-center"
         >
           <p
             aria-hidden="true"
-            class="font-[family-name:var(--font-heading)] text-3xl font-bold tracking-[-0.01em] text-[var(--sec)]"
+            class="font-(family-name:--font-heading) text-3xl font-bold tracking-[-0.01em] text-(--sec)"
           >
             {age}세
           </p>
-          <p class="text-xs text-[var(--white-icon)] md:text-sm">고등학생</p>
+          <p class="text-xs text-(--white-icon) md:text-sm">고등학생</p>
         </div>
 
         <div
           aria-label={`코딩 공부 ${career}년`}
-          class="rounded-xl border border-[var(--white-icon-tr)] bg-[#1a1a1a9c] p-4 text-center"
+          class="rounded-xl border border-(--white-icon-tr) bg-[#1a1a1a9c] p-4 text-center"
         >
           <p
             aria-hidden="true"
-            class="font-[family-name:var(--font-heading)] text-3xl font-bold tracking-[-0.01em] text-[var(--sec)]"
+            class="font-(family-name:--font-heading) text-3xl font-bold tracking-[-0.01em] text-(--sec)"
           >
             {career}년
           </p>
-          <p class="text-xs text-[var(--white-icon)] md:text-sm">코딩 공부</p>
+          <p class="text-xs text-(--white-icon) md:text-sm">코딩 공부</p>
         </div>
       </div>
     </div>
 
     <div class="flex flex-col items-center gap-8 lg:flex-row">
       <SkillsList client:visible />
-      <div class="flex size-[290px] justify-center pt-3 md:ml-16 md:h-[292px] md:w-full md:pt-9">
+      <div class="flex size-72.5 justify-center pt-3 md:ml-16 md:h-73 md:w-full md:pt-9">
         <LetterGlitch
           client:visible
           glitchColors={["#5e4491", "#A476FF", "#241a38"]}
