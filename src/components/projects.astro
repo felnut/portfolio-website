@@ -5,6 +5,8 @@ import GitHubIcon from "../components/icons/GitHubIcon.astro";
 interface Project {
   title: string;
   emoji: string;
+  // 실제 스크린샷/사진이 있으면 이모지 대신 이걸 보여준다.
+  image?: string;
   description: string;
   details?: { title: string; items: string[] };
   status: string;
@@ -20,6 +22,7 @@ const projects: Project[] = [
   {
     title: "섯다",
     emoji: "🃏",
+    image: "/imgs/projects/seotda.png",
     description: "전통 카드 게임 섯다를 친구와 온라인 실시간으로 즐길 수 있는 웹 게임입니다.",
     details: {
       title: "주요 기능",
@@ -45,10 +48,7 @@ const projects: Project[] = [
       items: ["OpenWeatherMap", "Kakao Map"],
     },
     status: "완료",
-    // 저장소가 비공개라 공개 링크를 걸 수 없음(Yoast SEO 체크에서 404로
-    // 잡힌 원인).
-    githubUrl: null,
-    githubNotice: "비공개 저장소라 공개 링크가 없습니다.",
+    githubUrl: "https://github.com/felnut/Weather-Mate",
   },
   {
     title: "액자형 공기청정기",
@@ -76,12 +76,21 @@ const linkIconClass =
       {projects.map((project) => (
         <div class="group">
           <div class="mb-4 flex h-48 items-center justify-center overflow-hidden rounded-2xl border border-(--white-icon-tr) bg-linear-to-br from-[#241a38] to-[#1a1428] shadow-lg md:h-72">
-            <span
-              class="text-7xl transition-transform duration-300 group-hover:scale-110 md:text-8xl"
-              aria-hidden="true"
-            >
-              {project.emoji}
-            </span>
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={`${project.title} 스크린샷`}
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                loading="lazy"
+              />
+            ) : (
+              <span
+                class="text-7xl transition-transform duration-300 group-hover:scale-110 md:text-8xl"
+                aria-hidden="true"
+              >
+                {project.emoji}
+              </span>
+            )}
           </div>
 
           <div class="px-3">

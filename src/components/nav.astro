@@ -41,7 +41,7 @@ const navItems: NavItem[] = [
               href={item.href}
               class="group relative flex flex-col items-center gap-1 text-xs text-(--white-icon) transition-colors md:text-base"
             >
-              <div class="nav-indicator absolute -left-6 top-1/2 hidden h-2 w-2 -translate-y-1/2 scale-0 rounded-full bg-[#A9FF5B] opacity-0 transition-all duration-300 md:block" />
+              <div class="nav-indicator absolute -left-6 top-1/2 hidden h-2 w-2 -translate-y-1/2 scale-0 rounded-full bg-(--sec) opacity-0 transition-all duration-300 md:block" />
               <span class="flex h-6 w-6 items-center justify-center md:hidden">
                 <fragment set:html={item.icon} />
               </span>
@@ -56,7 +56,6 @@ const navItems: NavItem[] = [
 </div>
 <style>
   nav {
-    transform: translateX(-50%);
     background-color: var(--background);
     transition:
       background-color 0.3s ease,
@@ -82,7 +81,6 @@ const navItems: NavItem[] = [
   @media (max-width: 767px) {
     nav {
       width: 100% !important;
-      transform: translateX(-50%);
       bottom: 0;
       left: 50%;
       position: fixed;

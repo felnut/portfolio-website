@@ -10,19 +10,22 @@ const CategoryIcons = {
 
 // 공식 브랜드 SVG(Simple Icons 기반, /public/svg). 자격증처럼 회사 로고가
 // 없는 항목은 매핑에서 빠지고 기존 불릿(•)으로 표시된다.
-const skillIcons: Record<string, { src: string; alt: string }[]> = {
+// HTML5/CSS3/JavaScript는 SVG 안에 브랜드 색상이 fill로 박혀 있어 그대로
+// 쓰면 되지만, 나머지(Simple Icons 단색 세트)는 fill 속성이 없어 기본값인
+// 검정으로 렌더링된다 — 어두운 배경에 묻히므로 invert로 흰색으로 뒤집는다.
+const skillIcons: Record<string, { src: string; alt: string; mono?: boolean }[]> = {
   "HTML/CSS": [
     { src: "/svg/HTML5.svg", alt: "HTML5" },
     { src: "/svg/CSS3.svg", alt: "CSS3" },
   ],
   JavaScript: [{ src: "/svg/javaScript.svg", alt: "JavaScript" }],
-  Python: [{ src: "/svg/python.svg", alt: "Python" }],
-  Java: [{ src: "/svg/java.svg", alt: "Java" }],
+  Python: [{ src: "/svg/python.svg", alt: "Python", mono: true }],
+  Java: [{ src: "/svg/java.svg", alt: "Java", mono: true }],
   "C / C++": [
-    { src: "/svg/c.svg", alt: "C" },
-    { src: "/svg/cplusplus.svg", alt: "C++" },
+    { src: "/svg/c.svg", alt: "C", mono: true },
+    { src: "/svg/cplusplus.svg", alt: "C++", mono: true },
   ],
-  SQLite: [{ src: "/svg/sqlite.svg", alt: "SQLite" }],
+  SQLite: [{ src: "/svg/sqlite.svg", alt: "SQLite", mono: true }],
 };
 
 const SkillsList = () => {
@@ -83,7 +86,7 @@ const SkillsList = () => {
                               key={icon.alt}
                               src={icon.src}
                               alt={icon.alt}
-                              className="h-4 w-4 object-contain opacity-70 brightness-0 invert"
+                              className={`h-4 w-4 object-contain opacity-80 ${icon.mono ? "invert" : ""}`}
                               loading="lazy"
                             />
                           ))}
