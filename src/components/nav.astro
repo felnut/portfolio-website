@@ -137,11 +137,17 @@ const navItems: NavItem[] = [
 
   document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-      e.preventDefault();
       const target = e.currentTarget as HTMLAnchorElement;
       const targetId = target.getAttribute("href")?.split("#")[1] || "";
       const targetElement = document.getElementById(targetId);
-      if (targetElement) {
+      const destination = new URL(target.href);
+      if (
+        destination.origin === location.origin &&
+        destination.pathname === location.pathname &&
+        targetElement
+      ) {
+        e.preventDefault();
+        history.pushState(null, "", destination.hash);
         targetElement.scrollIntoView({
           behavior: "smooth",
         });

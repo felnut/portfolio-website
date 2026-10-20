@@ -19,21 +19,25 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
 const {
+  description,
   title = "FELNUT | 프론트엔드·임베디드 시스템·데이터베이스를 공부하는 고등학생 개발자 포트폴리오",
 } = Astro.props;
 
 const SITE_URL = "https://www.felnut.com/";
 const DESCRIPTION =
+  description ??
   "프론트엔드, 임베디드 시스템, 데이터베이스를 공부하며 섯다·방화벽·액자형 공기청정기 등 다양한 프로젝트를 직접 만들어보는 FELNUT의 개발자 포트폴리오입니다. 실시간 웹 게임부터 라즈베리파이 하드웨어까지 폭넓게 다룹니다.";
 const PREVIEW_IMAGE = `${SITE_URL}preview.png`;
 
 const personId = `${SITE_URL}#person`;
 const organizationId = `${SITE_URL}#organization`;
 const websiteId = `${SITE_URL}#website`;
-const webpageId = `${SITE_URL}#webpage`;
+const pageUrl = new URL(Astro.url.pathname, SITE_URL).href;
+const webpageId = `${pageUrl}#webpage`;
 
 // git 히스토리 기준 실제 날짜(첫 커밋 / 최신 커밋). 사이트를 크게
 // 개편할 때 dateModified를 그때의 커밋 날짜로 함께 갱신한다.
@@ -69,10 +73,6 @@ const jsonLd = {
       description:
         "프론트엔드, 임베디드 시스템, 데이터베이스를 공부하며 다양한 프로젝트를 개발하는 1인 개발자입니다.",
       logo: `${SITE_URL}imgs/small_logo.png`,
-      // 실제 사업장 주소가 없는 1인 개발 프로젝트라, schema.org가
-      // address에 Text도 허용하는 점을 이용해 포트폴리오 사이트
-      // URL을 대신 넣는다.
-      address: SITE_URL,
       founder: { "@id": personId },
       sameAs: ["https://github.com/felnut"],
       contactPoint: {
@@ -93,15 +93,16 @@ const jsonLd = {
     {
       "@type": "WebPage",
       "@id": webpageId,
-      url: SITE_URL,
+      url: pageUrl,
       name: title,
       description: DESCRIPTION,
       inLanguage: "ko-KR",
       isPartOf: { "@id": websiteId },
       about: { "@id": personId },
       primaryImageOfPage: PREVIEW_IMAGE,
-      datePublished: PAGE_DATE_PUBLISHED,
-      dateModified: PAGE_DATE_MODIFIED,
+      ...(Astro.url.pathname === "/"
+        ? { datePublished: PAGE_DATE_PUBLISHED, dateModified: PAGE_DATE_MODIFIED }
+        : {}),
     },
   ],
 };
@@ -127,7 +128,7 @@ const jsonLd = {
          곳에만 그대로 남겨둔다. -->
     <link rel="icon" type="image/png" href="/imgs/favicon-48.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="canonical" href={SITE_URL} />
+    <link rel="canonical" href={pageUrl} />
 
     <!-- 제목에만 쓰는 IBM Plex Sans KR은 렌더 차단 없이 비동기로 불러오고,
          로드되기 전까지는 폴백 폰트로 보여준다(media="print" 트릭). -->
@@ -151,7 +152,7 @@ const jsonLd = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={DESCRIPTION} />
     <meta property="og:image" content={PREVIEW_IMAGE} />
-    <meta property="og:url" content={SITE_URL} />
+    <meta property="og:url" content={pageUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="FELNUT" />
     <meta property="og:locale" content="ko_KR" />
@@ -205,7 +206,8 @@ const jsonLd = {
       --white: #dfdfdf;
       --white-icon: #cbd5e1;
       --white-icon-tr: #f3f3f310;
-      --font-heading: "IBM Plex Sans KR", "IBM Plex Sans KR Fallback", -apple-system, system-ui, sans-serif;
+      --font-heading:
+        "IBM Plex Sans KR", "IBM Plex Sans KR Fallback", -apple-system, system-ui, sans-serif;
       --font-body: "Pretendard", "Pretendard Fallback", -apple-system, system-ui, sans-serif;
       --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
     }

@@ -1,0 +1,70 @@
+---
+import Layout from "./Layout.astro";
+import Nav from "../components/nav.astro";
+import Footer from "../components/footer.astro";
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<Layout title={`${title} | FELNUT`} description={description}>
+  <Nav />
+  <main class="document mx-auto max-w-3xl pb-16 pt-12 text-(--white) md:pt-36">
+    <a href="/notes/">← 개발 노트 목록</a>
+    <h1>{title}</h1>
+    <p class="intro">{description}</p>
+    <slot />
+  </main>
+  <Footer />
+</Layout>
+<style>
+  .document {
+    overflow-wrap: anywhere;
+    line-height: 1.9;
+  }
+  .document :global(h1) {
+    font-size: clamp(1.8rem, 5vw, 2.7rem);
+    line-height: 1.4;
+    margin: 1rem 0;
+  }
+  .document :global(h2) {
+    font-size: 1.5rem;
+    margin: 2.5rem 0 1rem;
+  }
+  .document :global(h3) {
+    font-size: 1.2rem;
+    margin: 1.5rem 0 0.75rem;
+  }
+  .document :global(p),
+  .document :global(ul),
+  .document :global(ol) {
+    margin: 1rem 0;
+    color: var(--white-icon);
+  }
+  .document :global(ul),
+  .document :global(ol) {
+    padding-left: 1.5rem;
+    list-style: revert;
+  }
+  .document :global(a) {
+    color: var(--sec);
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+  .document :global(pre) {
+    overflow-x: auto;
+    padding: 1rem;
+    border: 1px solid #ffffff20;
+    border-radius: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+  .document :global(code) {
+    font-family: var(--font-mono);
+  }
+  .intro {
+    font-size: 1.1rem;
+  }
+</style>

@@ -1,0 +1,108 @@
+---
+import Document from "../../layouts/Document.astro";
+---
+
+<Document
+  title="이 포트폴리오의 구조: Astro 정적 페이지와 React의 역할"
+  description="FELNUT 포트폴리오의 실제 소스를 따라 페이지 생성, 인터랙션, 폰트 로딩과 빌드 검증 방법을 설명합니다."
+>
+  <p>
+    작성: FELNUT · 코드 해설 · <time datetime="2026-10-21">2026년 10월 21일</time>
+  </p>
+  <p>
+    이 사이트의 주된 정보는 자기소개, 프로젝트 목록, 연락처입니다. 이 정보는 요청마다
+    데이터베이스에서 가져올 필요가 없습니다. 현재 구현은 Astro로 HTML을 미리 만들고, 브라우저의
+    상태가 필요한 부분에 React를 사용하는 구조입니다. 아래 설명은 공개된 포트폴리오 소스에 근거하며,
+    별도의 성능 측정 결과를 주장하지 않습니다.
+  </p>
+  <h2>1. 첫 페이지가 만들어지는 경로</h2>
+  <p>
+    <code>src/pages/index.astro</code>가 첫 페이지입니다. 공통 문서 틀인 <code>Layout.astro</code>{" "}
+    안에 내비게이션, 소개, 프로젝트, 연락처와 푸터를 조합합니다. 프로젝트 카드는 Astro 템플릿에서
+    배열을 순회해 생성하므로, 방문자가 프로젝트 설명을 읽는 데 React 실행이 필요하지 않습니다.
+  </p>
+  <p>
+    <code>astro.config.mjs</code>의 <code>output: "static"</code>은 빌드 시 페이지를 생성하도록
+    지정합니다. 빌드 결과는 <code>dist/</code>에 저장됩니다. 글이나 프로젝트 설명을 수정했을 때에는
+    다시 빌드하고 배포해야 방문자에게 반영됩니다. 정적 사이트가 콘텐츠를 자동으로 최신 상태로 유지해
+    주는 것은 아닙니다.
+  </p>
+  <h2>2. React는 브라우저 상태가 필요한 부분에 사용합니다</h2>
+  <p>
+    예를 들어 <code>EmailLink.tsx</code>는 처음에는 일반적인 <code>mailto:</code> 링크를
+    렌더링합니다. 브라우저에서 실행된 뒤에는 화면 크기, 터치 지원과 브라우저 종류에 따라 메일 앱
+    또는 웹메일 작성 화면으로 링크를 바꿉니다. 이처럼 최초 HTML의 링크를 유효하게 두면
+    자바스크립트가 아직 실행되지 않은 순간에도 기본 동작을 제공할 수 있습니다.
+  </p>
+  <p>
+    소개 영역의 메일 링크에는 <code>client:load</code>, 푸터의 링크에는 <code>client:visible</code>
+    이 지정되어 있습니다. 전자는 페이지 로드 시, 후자는 해당 요소가 화면에 보일 때 React 코드를
+    활성화합니다. 모든 컴포넌트를 즉시 활성화하기보다 사용 시점을 나누는 방식입니다. 다만 사용자
+    에이전트로 메일 서비스를 추측하는 로직은 사용자의 실제 선호를 정확히 알 수 없다는 한계가
+    있습니다.
+  </p>
+  <h2>3. 한글 웹폰트는 요청 방식도 확인해야 합니다</h2>
+  <p>
+    이 사이트는 제목에 IBM Plex Sans KR, 본문에 Pretendard를 사용합니다. <code>Layout.astro</code>는
+    폰트 CSS를 <code>?url</code>로 가져와 별도 스타일시트로 연결합니다. <code>media="print"</code>로
+    로드한 뒤 로드 이벤트에서 <code>all</code>로 전환하며, 자바스크립트가 꺼진 경우에는{" "}
+    <code>noscript</code> 안의 스타일시트가 적용됩니다.
+  </p>
+  <p>
+    이 방식은 본문을 폴백 글꼴로 먼저 보여줄 수 있지만, 폰트 교체로 글줄 높이가 달라질 수 있습니다.
+    그래서 같은 파일에 폴백 글꼴의 ascent, descent, line-gap 설정도 있습니다. 실제 개선 정도는
+    기기·네트워크·캐시 조건에 따라 다르므로 개발자 도구에서 폰트 요청과 레이아웃 이동을 함께
+    측정해야 합니다. 폰트 파일을 바꾸었다면 기존 보정값을 그대로 신뢰해서는 안 됩니다.
+  </p>
+  <h2>4. 수정한 뒤 확인하는 순서</h2>
+  <pre><code>{`pnpm install --frozen-lockfile
+pnpm build
+pnpm dev
+# 배포 결과를 로컬에서 확인하려면:
+pnpm preview`}</code></pre>
+  <ol>
+    <li>
+      잠금 파일을 유지하여 의존성을 설치합니다. 잠금 파일과 선언이 어긋나면 원인을 확인하고, 설치
+      성공만을 위해 무심코 갱신하지 않습니다.
+    </li>
+    <li>
+      <code>pnpm build</code>는 이 저장소에서 <code>astro check && astro build</code>를 실행합니다.
+      타입 검사와 정적 페이지 생성을 모두 확인합니다.
+    </li>
+    <li>
+      개발 화면에서 링크와 모바일 화면을 확인합니다. 빌드 성공만으로 버튼 동작이나 화면 넘침이
+      검증되지는 않습니다.
+    </li>
+    <li>
+      배포 전에 preview로 생성된 결과를 확인합니다. 개발 서버와 정적 배포 결과가 항상 같다고
+      가정하지 않습니다.
+    </li>
+  </ol>
+  <h2>이 구조가 맞는 경우와 한계</h2>
+  <p>
+    변경 빈도가 낮은 소개·문서 페이지에는 이 구조가 단순합니다. 반면 로그인 사용자별 정보나 실시간
+    데이터가 필요하다면 별도의 데이터 흐름과 보안 설계가 필요합니다. 이 포트폴리오의 정적 구조만으로
+    실시간 서비스를 구현했다고 이해해서는 안 됩니다.
+  </p>
+  <h2>소스와 참고 자료</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/felnut/portfolio-website">FELNUT 포트폴리오 공개 소스</a> —
+      src/pages/index.astro, src/layouts/Layout.astro, src/React/EmailLink.tsx, astro.config.mjs,
+      package.json
+    </li>
+    <li>
+      <a href="https://docs.astro.build/en/concepts/islands/">
+        Astro 공식 문서: Islands architecture
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.astro.build/en/reference/directives-reference/">
+        Astro 공식 문서: 클라이언트 지시어
+      </a>
+    </li>
+  </ul>
+  <p>
+    관련 글: <a href="/notes/navigation/">상세 페이지에서 홈 메뉴가 작동하지 않는 이유</a>
+  </p>
+</Document>

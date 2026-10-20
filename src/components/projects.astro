@@ -1,5 +1,4 @@
 ---
-import PreparingButton from "../React/PreparingButton.tsx";
 import GitHubIcon from "../components/icons/GitHubIcon.astro";
 
 interface Project {
@@ -112,11 +111,7 @@ const linkIconClass =
                     <GitHubIcon class="size-7" />
                   </a>
                 ) : (
-                  <PreparingButton
-                    client:visible
-                    className={linkIconClass}
-                    message={project.githubNotice}
-                  />
+                  <span class="self-center text-sm text-(--white-icon)">공개 저장소 없음</span>
                 )}
 
                 {project.liveUrl && (

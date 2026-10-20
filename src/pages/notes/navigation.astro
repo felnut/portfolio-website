@@ -1,0 +1,79 @@
+---
+import Document from "../../layouts/Document.astro";
+---
+
+<Document
+  title="상세 페이지에서 홈 메뉴가 작동하지 않는 이유"
+  description="단일 페이지 포트폴리오를 여러 페이지로 확장할 때, 앵커 링크의 기본 동작을 지켜야 하는 이유와 검증 방법입니다."
+>
+  <p>
+    작성: FELNUT · 내비게이션 수정 기록 · <time datetime="2026-10-21">2026년 10월 21일</time>
+  </p>
+  <h2>문제: 홈에서는 되지만 글 페이지에서는 안 되는 링크</h2>
+  <p>
+    포트폴리오의 메뉴는 <code>/#projects</code>처럼 홈의 특정 영역을 가리킵니다. 기존 스크립트는 #이
+    포함된 모든 링크에서 <code>preventDefault()</code>를 먼저 호출한 다음, 현재 문서에서 대상 ID를
+    찾았습니다. 홈에서는 프로젝트 영역이 존재해서 스크롤이 작동하지만, 상세 글에는 그 영역이
+    없습니다. 이때 브라우저의 페이지 이동까지 이미 취소되어 메뉴를 눌러도 아무 일도 일어나지
+    않습니다.
+  </p>
+  <h2>원인: 프래그먼트와 문서 경로를 구분하지 않음</h2>
+  <p>
+    <code>/#projects</code>에는 홈 경로와 projects 프래그먼트가 함께 있습니다.{" "}
+    <code>getElementById()</code>는 현재 문서만 검색하므로, 다른 경로의 요소를 찾을 수 없습니다. #
+    뒤의 문자열만 뽑아 처리하는 구현은 사이트가 한 페이지일 때는 드러나지 않던 가정을 포함하고
+    있었습니다.
+  </p>
+  <h2>수정: 현재 페이지의 대상만 스크롤로 처리</h2>
+  <p>
+    수정된 <code>src/components/nav.astro</code>에서는 링크를 URL로 해석하고 origin과 pathname이
+    현재 페이지와 같은지 확인합니다. 현재 문서에 실제 대상 요소까지 있을 때에만 기본 동작을
+    취소합니다. 다른 페이지로 가는 링크는 브라우저가 원래의 주소대로 처리합니다.
+  </p>
+  <pre><code>{`const destination = new URL(target.href);
+if (
+  destination.origin === location.origin &&
+  destination.pathname === location.pathname &&
+  targetElement
+) {
+  e.preventDefault();
+  history.pushState(null, "", destination.hash);
+  targetElement.scrollIntoView({ behavior: "smooth" });
+}`}</code></pre>
+  <p>
+    주소의 해시도 함께 갱신하므로 현재 위치를 복사해 공유할 수 있습니다. 브라우저의 기본 링크 의미를
+    유지하는 것이 핵심이며, 이를 위해 별도의 라우터를 추가할 필요는 없습니다.
+  </p>
+  <h2>확인할 시나리오</h2>
+  <ul>
+    <li>
+      홈에서 프로젝트 메뉴를 누르면 프로젝트 영역으로 이동하고 주소에 #projects가 나타나는지
+      확인합니다.
+    </li>
+    <li>이 글에서 프로젝트 메뉴를 누르면 홈으로 이동해 프로젝트 영역이 표시되는지 확인합니다.</li>
+    <li>
+      뒤로 가기 후 원래 문서로 돌아갈 수 있는지, 키보드로 메뉴 링크에 접근할 수 있는지 확인합니다.
+    </li>
+    <li>자바스크립트를 비활성화해도 링크가 홈의 해당 영역으로 이동하는지 확인합니다.</li>
+  </ul>
+  <h2>적용 범위</h2>
+  <p>
+    이 수정은 여러 HTML 페이지를 가진 현재 사이트의 앵커 탐색을 대상으로 합니다. 클라이언트 라우터나
+    페이지 전환 기능을 도입한다면 이벤트 재등록과 포커스 이동도 별도로 검토해야 합니다. 링크를 전부
+    클릭 이벤트로 대체하기 전에 HTML 기본 동작만으로 요구 사항을 충족할 수 있는지 확인하는 편이
+    유지보수에 유리합니다.
+  </p>
+  <p>
+    소스:{" "}
+    <a href="https://github.com/felnut/portfolio-website">
+      포트폴리오 저장소의 src/components/nav.astro
+    </a>{" "}
+    · 참고:{" "}
+    <a href="https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault">
+      MDN preventDefault()
+    </a>
+  </p>
+  <p>
+    관련 글: <a href="/notes/static-portfolio/">Astro 정적 페이지와 React의 역할</a>
+  </p>
+</Document>
