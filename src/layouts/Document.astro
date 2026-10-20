@@ -12,7 +12,9 @@ const { title, description } = Astro.props;
 <Layout title={`${title} | FELNUT`} description={description}>
   <Nav />
   <main class="document mx-auto max-w-3xl pb-16 pt-12 text-(--white) md:pt-36">
-    <a href="/notes/">← 개발 노트 목록</a>
+    <a href={Astro.url.pathname === "/notes/" ? "/" : "/notes/"}>
+      {Astro.url.pathname === "/notes/" ? "← 홈" : "← 개발 노트 목록"}
+    </a>
     <h1>{title}</h1>
     <p class="intro">{description}</p>
     <slot />
@@ -63,6 +65,54 @@ const { title, description } = Astro.props;
   }
   .document :global(code) {
     font-family: var(--font-mono);
+  }
+  .document :global(.table-wrap) {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  .document :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .document :global(caption) {
+    text-align: left;
+    color: var(--white-icon);
+    margin-bottom: 0.75rem;
+  }
+  .document :global(th),
+  .document :global(td) {
+    padding: 0.75rem;
+    border-bottom: 1px solid #ffffff20;
+    vertical-align: top;
+    min-width: 7rem;
+  }
+  .document :global(.note-meta) {
+    font-size: 0.85rem;
+    color: var(--white-icon);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ffffff20;
+  }
+  .document :global(figure) {
+    margin: 2rem 0;
+  }
+  .document :global(figure img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ffffff20;
+    border-radius: 0.75rem;
+  }
+  .document :global(figcaption) {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--white-icon);
+    line-height: 1.6;
+  }
+  .document :global(.mobile-figure) {
+    max-width: 390px;
+    margin-inline: auto;
   }
   .intro {
     font-size: 1.1rem;
