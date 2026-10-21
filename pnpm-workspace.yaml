@@ -6,3 +6,10 @@ allowBuilds:
   esbuild: true
   protobufjs: true
   sharp: true
+
+overrides:
+  devalue: ">=5.9.3"
+  vite: ">=8.3.3"
+  source-map-js: ">=1.2.2"
+  fast-uri: ">=3.1.8"
+  smol-toml: ">=1.9.0"
