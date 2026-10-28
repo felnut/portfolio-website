@@ -48,16 +48,19 @@ const SkillsList = () => {
       <ul className="mt-4 space-y-4 text-lg">
         {Object.entries(skills).map(([category, items]) => (
           <li key={category} className="w-full">
-            <div
-              onClick={() => toggleItem(category)}
-              className="hover:bg-opacity-80 w-full cursor-pointer overflow-hidden rounded-2xl border border-(--white-icon-tr) bg-[#1414149c] text-left transition-all md:w-100"
-            >
-              <div className="flex items-center gap-3 p-4">
+            <div className="hover:bg-opacity-80 w-full cursor-pointer overflow-hidden rounded-2xl border border-(--white-icon-tr) bg-[#1414149c] text-left transition-all md:w-100">
+              <button
+                type="button"
+                onClick={() => toggleItem(category)}
+                aria-expanded={openItem === category}
+                aria-controls={`skills-${category}`}
+                className="flex w-full cursor-pointer items-center gap-3 p-4 text-left focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--sec)"
+              >
                 {CategoryIcons[category as keyof typeof CategoryIcons]}
-                <div className="flex grow items-center justify-between gap-2">
-                  <div className="max-w-50 min-w-0 overflow-hidden md:max-w-none">
+                <span className="flex grow items-center justify-between gap-2">
+                  <span className="max-w-50 min-w-0 overflow-hidden md:max-w-none">
                     <span className="block truncate text-lg text-(--white)">{category}</span>
-                  </div>
+                  </span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -68,10 +71,12 @@ const SkillsList = () => {
                   >
                     <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path>
                   </svg>
-                </div>
-              </div>
+                </span>
+              </button>
 
               <div
+                id={`skills-${category}`}
+                aria-hidden={openItem !== category}
                 className={`px-4 transition-all duration-300 ${
                   openItem === category ? "max-h-125 pb-4 opacity-100" : "max-h-0 opacity-0"
                 }`}

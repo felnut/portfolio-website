@@ -137,7 +137,18 @@ const navItems: NavItem[] = [
 
   document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
+      if (
+        !(e instanceof MouseEvent) ||
+        e.defaultPrevented ||
+        e.button !== 0 ||
+        e.ctrlKey ||
+        e.metaKey ||
+        e.shiftKey ||
+        e.altKey
+      )
+        return;
       const target = e.currentTarget as HTMLAnchorElement;
+      if (target.hasAttribute("download") || (target.target && target.target !== "_self")) return;
       const targetId = target.getAttribute("href")?.split("#")[1] || "";
       const targetElement = document.getElementById(targetId);
       const destination = new URL(target.href);
